@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-const GROQ_API_KEY = process.env.REACT_APP_GROQ_API_KEY;
-
 function App() {
   const [chatOpen, setChatOpen] = useState(false);
   const [messages, setMessages] = useState([
@@ -20,11 +18,10 @@ function App() {
     setLoading(true);
 
     try {
-      const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      const response = await fetch('/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${GROQ_API_KEY}`
         },
         body: JSON.stringify({
           model: 'llama-3.3-70b-versatile',
